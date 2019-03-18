@@ -1,14 +1,14 @@
 # Semi-Convolutions for keras
 
-This repository includes a keras implementation of the semi-convolutional operator from Novotny et al., "Semi-convolutional Operators for Instance Segmentation".
-([Paper](https://arxiv.org/abs/1807.10712))[Poster](http://www.robots.ox.ac.uk/~david/posters/poster_semi.png).
+This repository includes a keras implementation of semi-convolutional operators from Novotny et al., "Semi-convolutional Operators for Instance Segmentation".
+([Paper](https://arxiv.org/abs/1807.10712), [Poster](http://www.robots.ox.ac.uk/~david/posters/poster_semi.png)).
 
-The general idea of semi-convolutions consists of mixing the convolutional operator with a non-convolutional information, e.g. the global pixel location, to solve the dilemma of convolutional coloring.
+In general, the idea of semi-convolutions consists of mixing the convolutional operator with a non-convolutional information, e.g. the global pixel location, to solve the dilemma of convolutional coloring and translational invariance.
 The authors got (small) improvements for Mask-RCNN on Microsoft COCO as well.
 
 The approach is closely related to the so-called Coord-Conv method ([Paper](https://arxiv.org/abs/1807.03247), [Code](https://github.com/titu1994/keras-coordconv)).
-In contrast to Coord-Conv, the information of global pixel location is obtained by Addition instead of Concatenation.
-The paper aims at instance segmentation instead of simple image classification (proposal-based instance segmentation as well as semantic-based embeddings!).
+In contrast to Coord-Conv, the information of global pixel location is integrated by Addition instead of Concatenation.
+The paper aims at instance segmentation instead of simple object detection (proposal-based instance segmentation as well as semantic-based embeddings!).
 
 ## Contents
 - semiconv.py: Semi-Convolutional Layer, some examples of mixing functions.
