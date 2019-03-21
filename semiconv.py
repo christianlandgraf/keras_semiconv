@@ -1,5 +1,5 @@
 """
-An keras implementation of the semi-convolutional operator of [1].
+A keras implementation of the semi-convolutional operator of [1].
 
 References:
     [1]  D. Novotny, S. Albanie, D. Larlus, A. Vedaldi, “Semi-convolutional
@@ -196,22 +196,22 @@ class SemiConv2D(Layer):
         return dict(list(base_config.items()) + list(config.items()))
 
 ################################################################################
-# Kernel for pixel embedding
+# Kernels for pixel embedding
 ################################################################################
 
 # TODO 
 
 ################################################################################
-#Example Functions:
+# Examples of mixing functions:
 ################################################################################
 
-#Multiplies each entry by a constant
+# Multiply each entry by a constant
 #f(x) = a*x
 def f(xy, normalized_position):
     xy_new = 1 * xy
     return xy_new
 
-#Merge the two feature maps into one, following the CoordConv paper
+# Merge the two feature maps into one, following the CoordConv paper
 def rr(xy, normalized_position):
     if normalized_position:
         rr = K.sqrt(K.square(xy[:,:,:,0]-0.5) + K.square(xy[:,:,:,1]-0.5))
