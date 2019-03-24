@@ -122,7 +122,7 @@ class SemiConv2D(Layer):
         xx_ones = K.expand_dims(xx_ones, -1)
         xx_range = K.tile(K.expand_dims(K.arange(x_dim), 0), [batch_size, 1])
         xx_range = K.expand_dims(xx_range, 1)
-        xx_channel = K.dot(xx_ones, xx_range)
+        xx_channel = K.batch_dot(xx_ones, xx_range)
         xx_channel = K.expand_dims(xx_channel, -1)
         xx_channel = K.cast(xx_channel, 'float32')
         if self.normalized_position:
@@ -133,7 +133,7 @@ class SemiConv2D(Layer):
         yy_ones = K.expand_dims(yy_ones, 1)
         yy_range = K.tile(K.expand_dims(K.arange(y_dim), 0), [batch_size, 1])
         yy_range = K.expand_dims(yy_range, -1)
-        yy_channel = K.dot(yy_range, yy_ones)
+        yy_channel = K.batch_dot(yy_range, yy_ones)
         yy_channel = K.expand_dims(yy_channel, -1)
         yy_channel = K.cast(yy_channel, 'float32')
         if self.normalized_position:
@@ -141,7 +141,7 @@ class SemiConv2D(Layer):
             yy_channel = yy_channel*2 - 1
         
         #Concat global x and y location
-        semi_tensor = K.squeeze(K.concatenate([xx_channel,yy_channel], axis=-1), axis=2)
+        semi_tensor = K.concatenate([xx_channel,yy_channel], axis=-1)
 
         #Apply Lambda function
         if self.function is not None:
